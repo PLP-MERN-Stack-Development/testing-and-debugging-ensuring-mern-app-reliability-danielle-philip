@@ -1,87 +1,422 @@
-# Testing and Debugging MERN Applications
+# MERN Bug Tracker - Full Project
 
-This assignment focuses on implementing comprehensive testing strategies for a MERN stack application, including unit testing, integration testing, and end-to-end testing, along with debugging techniques.
+This archive contains a complete MERN project scaffold with:
 
-## Assignment Overview
+* Backend: Express + Mongoose, Jest + Supertest integration tests (uses mongodb-memory-server)
+* Frontend: Vite + React, Axios API client, basic components and Vitest tests
+* Debugging tips and README for each part
 
-You will:
-1. Set up testing environments for both client and server
-2. Write unit tests for React components and server functions
-3. Implement integration tests for API endpoints
-4. Create end-to-end tests for critical user flows
-5. Apply debugging techniques for common MERN stack issues
+## Quick start (backend)
 
-## Project Structure
+1. cd backend
+2. copy .env.example to .env and adjust MONGO\_URI if you want to use a local MongoDB.
+3. npm install
+4. npm run dev
+5. npm test  (runs integration tests against in-memory MongoDB)
 
-```
-mern-testing/
-├── client/                 # React front-end
-│   ├── src/                # React source code
-│   │   ├── components/     # React components
-│   │   ├── tests/          # Client-side tests
-│   │   │   ├── unit/       # Unit tests
-│   │   │   └── integration/ # Integration tests
-│   │   └── App.jsx         # Main application component
-│   └── cypress/            # End-to-end tests
-├── server/                 # Express.js back-end
-│   ├── src/                # Server source code
-│   │   ├── controllers/    # Route controllers
-│   │   ├── models/         # Mongoose models
-│   │   ├── routes/         # API routes
-│   │   └── middleware/     # Custom middleware
-│   └── tests/              # Server-side tests
-│       ├── unit/           # Unit tests
-│       └── integration/    # Integration tests
-├── jest.config.js          # Jest configuration
-└── package.json            # Project dependencies
-```
+## Quick start (frontend)
 
-## Getting Started
+1. cd frontend
+2. npm install
+3. npm run dev
+4. The Vite server runs on port 5173 and proxies /api to http://localhost:5000
 
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Follow the setup instructions in the `Week6-Assignment.md` file
-4. Explore the starter code and existing tests
-5. Complete the tasks outlined in the assignment
+## Tests \& Coverage
 
-## Files Included
+* Backend uses Jest + supertest + mongodb-memory-server for reliable CI-friendly integration tests.
+* Frontend includes a basic Vitest test. Add more component tests under src/tests/
+* To measure coverage, add appropriate Jest or Vitest coverage flags in package.json scripts.
 
-- `Week6-Assignment.md`: Detailed assignment instructions
-- Starter code for a MERN application with basic test setup:
-  - Sample React components with test files
-  - Express routes with test files
-  - Jest and testing library configurations
-  - Example tests for reference
+## Debugging Checklist
 
-## Requirements
+* Backend: node --inspect, console.log, inspect running requests, use Postman or curl to test endpoints.
+* Frontend: React DevTools, browser Network tab, console logs, Vitest to run unit tests.
+* Error boundaries in the frontend capture render-time errors.
+* 
 
-- Node.js (v18 or higher)
-- MongoDB (local installation or Atlas account)
-- npm or yarn
-- Basic understanding of testing concepts
+## Step 1 — Clone the Project
 
-## Testing Tools
+## git clone https://github.com/yourusername/mern-testing.git
 
-- Jest: JavaScript testing framework
-- React Testing Library: Testing utilities for React
-- Supertest: HTTP assertions for API testing
-- Cypress/Playwright: End-to-end testing framework
-- MongoDB Memory Server: In-memory MongoDB for testing
+## cd mern-testing
 
-## Submission
+## 
 
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
+## Step 2 — Install Backend Dependencies
 
-1. Complete all required tests (unit, integration, and end-to-end)
-2. Achieve at least 70% code coverage for unit tests
-3. Document your testing strategy in the README.md
-4. Include screenshots of your test coverage reports
-5. Demonstrate debugging techniques in your code
+## cd server
 
-## Resources
+## npm install
 
-- [Jest Documentation](https://jestjs.io/docs/getting-started)
-- [React Testing Library Documentation](https://testing-library.com/docs/react-testing-library/intro/)
-- [Supertest Documentation](https://github.com/visionmedia/supertest)
-- [Cypress Documentation](https://docs.cypress.io/)
-- [MongoDB Testing Best Practices](https://www.mongodb.com/blog/post/mongodb-testing-best-practices) 
+## 
+
+## Step 3 — Configure Backend Environment
+
+## 
+
+## Inside /server, create:
+
+## 
+
+## cp .env.example .env
+
+## 
+
+## 
+
+## Inside .env, set:
+
+## 
+
+## MONGO\_URI=mongodb://127.0.0.1:27017/bugtracker
+
+## PORT=5000
+
+## 
+
+## 
+
+## If using Atlas:
+
+## 
+
+## MONGO\_URI=your\_atlas\_connection\_string
+
+## 
+
+## Step 4 — Install Frontend Dependencies
+
+## cd ../client
+
+## npm install
+
+## 
+
+## Step 5 — Configure Frontend API Proxy (Already Set)
+
+## 
+
+## Vite automatically forwards /api → backend.
+
+## 
+
+## Nothing to configure unless your backend is remote.
+
+## 
+
+## 6\. Running the Backend
+
+## 
+
+## From /server:
+
+## 
+
+## npm run dev     # Start with nodemon
+
+## npm start       # Production
+
+## 
+
+## 
+
+## Backend should run at:
+
+## 
+
+## http://localhost:5000
+
+## 
+
+## 
+
+## Check:
+
+## 
+
+## GET /api/bugs
+
+## 
+
+## 7\. Running the Frontend
+
+## 
+
+## From /client:
+
+## 
+
+## npm run dev
+
+## 
+
+## 
+
+## App runs at:
+
+## 
+
+## http://localhost:5173
+
+## 
+
+## 
+
+## You should see:
+
+## 
+
+## "Bug Tracker"
+
+## 
+
+## 8\. Running Tests
+
+## Backend Tests (Jest + Supertest)
+
+## 
+
+## From /server:
+
+## 
+
+## Run all tests:
+
+## npm test
+
+## 
+
+## Unit tests include:
+
+## 
+
+## Validation
+
+## 
+
+## Helper functions
+
+## 
+
+## Integration tests include:
+
+## 
+
+## POST /api/bugs
+
+## 
+
+## GET /api/bugs
+
+## 
+
+## PATCH /api/bugs/:id
+
+## 
+
+## DELETE /api/bugs/:id
+
+## 
+
+## Backend tests use in-memory MongoDB (NO real DB needed).
+
+## 
+
+## Frontend Tests (Vitest + RTL)
+
+## 
+
+## From /client:
+
+## 
+
+## npm run test
+
+## 
+
+## 
+
+## Includes:
+
+## 
+
+## Unit tests:
+
+## 
+
+## Form validation
+
+## 
+
+## Component rendering
+
+## 
+
+## Event handlers
+
+## 
+
+## Integration tests:
+
+## 
+
+## API mocking
+
+## 
+
+## UI updates
+
+## 
+
+## E2E Tests (Cypress)
+
+## 
+
+## From /client:
+
+## 
+
+## npx cypress open
+
+## 
+
+## 9\. Debugging Guide
+
+## Backend Debugging
+
+## 
+
+## Open inspector:
+
+## 
+
+## node --inspect src/server.js
+
+## 
+
+## 
+
+## Then open in Chrome:
+
+## 
+
+## chrome://inspect
+
+## 
+
+## 
+
+## Tools:
+
+## 
+
+## Breakpoints
+
+## 
+
+## Watch expressions
+
+## 
+
+## Step-through debugging
+
+## 
+
+## Frontend Debugging
+
+## 
+
+## Use:
+
+## 
+
+## Chrome DevTools
+
+## 
+
+## React DevTools
+
+## 
+
+## Console logs
+
+## 
+
+## Network tab
+
+## 
+
+## Recommended Approach
+
+## 
+
+## Watch state updates in Components
+
+## 
+
+## Inspect failed API requests
+
+## 
+
+## Use breakpoints in JSX
+
+## 
+
+## Check React Error Boundary logs
+
+## 
+
+## 10\. Error Handling System
+
+## Backend Error Handling
+
+## 
+
+## Centralized Express middleware:
+
+## 
+
+## Catches unknown routes
+
+## 
+
+## Captures thrown errors
+
+## 
+
+## Sends JSON response
+
+## 
+
+## Example:
+
+## 
+
+## {
+
+## &nbsp; "error": "Bug not found",
+
+## &nbsp; "status": 404
+
+## }
+
+## 
+
+## Frontend Error Handling
+
+## 
+
+## React Error Boundary wrapper:
+
+## 
+
+## Prevents UI crash
+
+## 
+
+## Displays fallback UI
+
+## 
+
+## Logs error details
+
